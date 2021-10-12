@@ -14,8 +14,9 @@ HTTP(s) request library.
 </p>
 
 - [x] ESM/CJS compatible
+- [x] No dependencies
 - [x] TypeScript
-- [ ] node-fetch drop-in replacement
+- [ ] Same API as `fetch`
 
 ## Usage
 

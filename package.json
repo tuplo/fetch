@@ -1,6 +1,6 @@
 {
   "name": "@tuplo/fetch",
-  "description": "HTTP request library (ESM/CSM)",
+  "description": "HTTP request library (ESM/CJS)",
   "version": "0.0.0-development",
   "repository": "git@github.com:tuplo/fetch.git",
   "author": "Rui Costa",
