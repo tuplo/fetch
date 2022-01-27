@@ -3,14 +3,13 @@
 import type {
   RestRequest,
   DefaultRequestBody,
-  RequestParams,
   ResponseComposition,
   RestContext,
   MockedResponse,
 } from 'msw';
 import { URL } from 'url';
 
-type Request = RestRequest<DefaultRequestBody, RequestParams>;
+type Request = RestRequest<DefaultRequestBody>;
 
 type Headers = Record<string, string>;
 function getHeaders(req: Request) {
@@ -36,7 +35,7 @@ function getQuery(req: Request) {
 }
 
 export function handler(
-  req: RestRequest<DefaultRequestBody, RequestParams>,
+  req: RestRequest<DefaultRequestBody>,
   res: ResponseComposition<DefaultRequestBody>,
   ctx: RestContext
 ):
