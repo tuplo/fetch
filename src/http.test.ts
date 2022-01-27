@@ -1,3 +1,5 @@
+import type { FetchOptions } from './fetch.d';
+
 import fetch from './index';
 
 describe('fetch (http)', () => {
@@ -52,11 +54,14 @@ describe('fetch (http)', () => {
     });
 
     describe('post', () => {
+      const defaultReqOptions: FetchOptions = {
+        method: 'POST',
+      };
+
       it('plain request', async () => {
-        const reqOptions = {
-          method: 'POST',
-        };
-        const result = await fetch(url, reqOptions).then((res) => res.json());
+        const result = await fetch(url, defaultReqOptions).then((res) =>
+          res.json()
+        );
 
         const expected = {
           body: '',
@@ -68,11 +73,8 @@ describe('fetch (http)', () => {
       });
 
       it('with query parameters', async () => {
-        const reqOptions = {
-          method: 'POST',
-        };
-        const result = await fetch(`${url}?foo=bar`, reqOptions).then((res) =>
-          res.json()
+        const result = await fetch(`${url}?foo=bar`, defaultReqOptions).then(
+          (res) => res.json()
         );
 
         const expected = {
@@ -86,7 +88,7 @@ describe('fetch (http)', () => {
 
       it('with headers', async () => {
         const reqOptions = {
-          method: 'POST',
+          ...defaultReqOptions,
           headers: {
             Authentication: 'Bearer xxx',
             'Content-type': 'application/json',
@@ -108,7 +110,7 @@ describe('fetch (http)', () => {
 
       it('with body', async () => {
         const reqOptions = {
-          method: 'POST',
+          ...defaultReqOptions,
           body: 'foo=bar',
         };
         const result = await fetch(url, reqOptions).then((res) => res.json());

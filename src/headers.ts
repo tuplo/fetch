@@ -1,4 +1,4 @@
-export class Headers extends URLSearchParams {}
+import type { Headers } from './fetch.d';
 
 export function fromRawHeaders(rawHeaders: string[]): Headers {
   const headers = rawHeaders.reduce((acc, _, index, array) => {
@@ -10,5 +10,5 @@ export function fromRawHeaders(rawHeaders: string[]): Headers {
     return acc;
   }, [] as string[][]);
 
-  return new Headers(headers);
+  return new URLSearchParams(headers) as Headers;
 }

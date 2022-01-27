@@ -1,6 +1,6 @@
 {
   "name": "@tuplo/fetch",
-  "description": "HTTP request library (ESM/CJS)",
+  "description": "Simplistic HTTP request library (ESM/CJS)",
   "version": "0.0.0-development",
   "repository": "git@github.com:tuplo/fetch.git",
   "author": "Rui Costa",
@@ -24,7 +24,7 @@
   },
   "devDependencies": {
     "@types/jest": "27.4.0",
-    "@types/node": "17.0.12",
+    "@types/node": "17.0.13",
     "@typescript-eslint/eslint-plugin": "5.10.1",
     "@typescript-eslint/parser": "5.10.1",
     "esbuild": "0.14.14",
@@ -55,9 +55,6 @@
     "access": "public"
   },
   "jest": {
-    "roots": [
-      "<rootDir>/src"
-    ],
     "setupFilesAfterEnv": [
       "./jest.setup.ts"
     ],

@@ -4,23 +4,17 @@ import { URL } from 'url';
 import type { RequestOptions } from 'https';
 import type { OutgoingHttpHeaders } from 'http';
 
+import type { Response, FetchOptions } from './fetch.d';
 import { fromRawHeaders } from './headers';
 
-export type { Response, BodyInit, HeadersInit } from './fetch.d';
+export type { Response, FetchOptions };
 
-export type FetchOptions = {
-  body: BodyInit;
-  headers: HeadersInit;
-  method: string;
-};
-
-export default async function fetch<T>(
+export default async function fetch<T = unknown>(
   url: string,
   options?: Partial<FetchOptions>
-): Promise<Response> {
+): Promise<Response<T>> {
   const { protocol, hostname, pathname, port, search } = new URL(url);
   const { method = 'GET', headers, body } = options || {};
-
   const engine = protocol === 'http:' ? http : https;
 
   const reqOptions: RequestOptions = {
@@ -48,19 +42,16 @@ export default async function fetch<T>(
         const buffer = Buffer.concat(chunks);
         const data = buffer.toString();
 
-        const response = {
+        const response: Response<T> = {
           headers: fromRawHeaders(rawHeaders),
-          json: () => Promise.resolve(JSON.parse(data)) as Promise<T>,
-          text: () => Promise.resolve(data),
           ok: statusCode >= 200 && statusCode < 300,
-          redirected: false,
           status: statusCode,
           statusText: statusMessage || '',
-          type: 'default',
-          url,
+          text: async () => data,
+          json: async () => JSON.parse(data),
         };
 
-        resolve(response as unknown as Response);
+        resolve(response);
       });
 
       res.on('error', reject);
