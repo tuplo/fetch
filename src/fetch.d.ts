@@ -19,4 +19,5 @@ export type Response<T = unknown> = {
   status: number;
   statusText: string;
   text: () => Promise<string>;
+  url: string | undefined;
 };

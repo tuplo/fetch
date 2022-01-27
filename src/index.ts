@@ -38,6 +38,7 @@ export default async function fetch<T = unknown>(
 
       res.on('end', () => {
         const { statusMessage, rawHeaders } = res;
+
         const statusCode = Number(res.statusCode);
         const buffer = Buffer.concat(chunks);
         const data = buffer.toString();
@@ -49,6 +50,7 @@ export default async function fetch<T = unknown>(
           statusText: statusMessage || '',
           text: async () => data,
           json: async () => JSON.parse(data),
+          url: res.url,
         };
 
         resolve(response);
