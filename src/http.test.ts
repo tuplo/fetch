@@ -12,7 +12,9 @@ describe('fetch (http)', () => {
 
         const expected = {
           body: '',
-          headers: {},
+          headers: {
+            host: 'localhost',
+          },
           method: 'GET',
           query: {},
         };
@@ -24,7 +26,9 @@ describe('fetch (http)', () => {
 
         const expected = {
           body: '',
-          headers: {},
+          headers: {
+            host: 'localhost',
+          },
           method: 'GET',
           query: { foo: 'bar' },
         };
@@ -36,6 +40,7 @@ describe('fetch (http)', () => {
           headers: {
             Authentication: 'Bearer xxx',
             'Content-type': 'application/json',
+            host: 'localhost',
           },
         };
         const result = await fetch(url, reqOptions).then((res) => res.json());
@@ -45,6 +50,7 @@ describe('fetch (http)', () => {
           headers: {
             authentication: 'Bearer xxx',
             'content-type': 'application/json',
+            host: 'localhost',
           },
           method: 'GET',
           query: {},
@@ -65,7 +71,9 @@ describe('fetch (http)', () => {
 
         const expected = {
           body: '',
-          headers: {},
+          headers: {
+            host: 'localhost',
+          },
           method: 'POST',
           query: {},
         };
@@ -79,7 +87,9 @@ describe('fetch (http)', () => {
 
         const expected = {
           body: '',
-          headers: {},
+          headers: {
+            host: 'localhost',
+          },
           method: 'POST',
           query: { foo: 'bar' },
         };
@@ -101,6 +111,7 @@ describe('fetch (http)', () => {
           headers: {
             authentication: 'Bearer xxx',
             'content-type': 'application/json',
+            host: 'localhost',
           },
           method: 'POST',
           query: {},
@@ -117,7 +128,9 @@ describe('fetch (http)', () => {
 
         const expected = {
           body: 'foo=bar',
-          headers: {},
+          headers: {
+            host: 'localhost',
+          },
           method: 'POST',
           query: {},
         };

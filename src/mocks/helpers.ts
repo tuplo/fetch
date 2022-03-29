@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/naming-convention */
-/* eslint-disable no-underscore-dangle */
 import type {
   RestRequest,
   DefaultRequestBody,
@@ -13,9 +11,7 @@ type Request = RestRequest<DefaultRequestBody>;
 
 type Headers = Record<string, string>;
 function getHeaders(req: Request) {
-  // @ts-expect-error _headers is private
-  const headers = req.headers._headers as Headers;
-  return Object.entries(headers).reduce((acc, [key, value]) => {
+  return [...req.headers.entries()].reduce((acc, [key, value]) => {
     if (key === 'x-msw-request-id') return acc;
     if (value === '') return acc;
 
