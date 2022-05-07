@@ -60,7 +60,7 @@ describe('fetch (http)', () => {
     });
 
     describe('post', () => {
-      const defaultReqOptions: FetchOptions = {
+      const defaultReqOptions: Partial<FetchOptions> = {
         method: 'POST',
       };
 
