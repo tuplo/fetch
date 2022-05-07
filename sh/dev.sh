@@ -1,11 +1,16 @@
 #!/usr/bin/env bash
+set -euo pipefail
 
-rimraf dist
-tsc --build tsconfig.build.json
+main() {
+  rm -rf dist
+  tsc --build tsconfig.build.json
 
-esbuild src/index.ts \
-  --bundle \
-  --platform=node \
-  --format=esm \
-  --outfile=dist/index.mjs \
-  --watch
+  esbuild src/index.ts \
+    --bundle \
+    --platform=node \
+    --format=esm \
+    --outfile=dist/index.mjs \
+    --watch
+}
+
+main

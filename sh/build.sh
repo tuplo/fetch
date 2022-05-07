@@ -1,9 +1,14 @@
 #!/usr/bin/env bash
+set -euo pipefail
 
-rimraf dist
-tsc --build tsconfig.build.json
+main() {
+  rm -rf dist
+  tsc --build tsconfig.build.json
 
-esbuild src/index.cjs --bundle --platform=node --outfile=dist/index.cjs
-esbuild src/index.ts --bundle --platform=node --format=esm --outfile=dist/index.mjs
+  esbuild src/cjs/index.cjs --bundle --platform=node --outfile=dist/index.cjs
+  esbuild src/index.ts --bundle --platform=node --format=esm --outfile=dist/index.mjs
 
-cp src/fetch.d.ts dist/fetch.d.ts
+  cp src/fetch.d.ts dist/fetch.d.ts
+}
+
+main
