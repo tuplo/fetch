@@ -20,7 +20,7 @@ export default async function fetch<T = unknown>(
 
   const result = await Promise.race([
     request<T>(url, reqOptions),
-    timeout(controller, options?.timeout || 5_000),
+    timeout(controller, options?.timeout || 30_000),
   ]);
 
   // @ts-expect-error Object is of type 'unknown'.
