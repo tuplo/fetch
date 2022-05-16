@@ -1,8 +1,8 @@
-import type { Response, FetchOptions } from './fetch.d';
+import type { Response, FetchOptions, HttpMethod } from './fetch.d';
 import { request } from './request';
 import { timeout } from './timeout';
 
-export type { Response, FetchOptions };
+export type { Response, FetchOptions, HttpMethod };
 
 export default async function fetch<T = unknown>(
   url: string,
