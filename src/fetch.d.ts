@@ -3,7 +3,7 @@ import type { URLSearchParams } from 'url';
 
 export type Headers = URLSearchParams;
 
-export type HttpMethod = 'GET' | 'POST' | 'DELETE' | 'PUT' | 'HEAD';
+export type HttpMethod = 'GET' | 'POST' | 'DELETE' | 'PUT' | 'HEAD' | 'PATCH';
 
 export type HeadersInit = Record<string, string>;
 

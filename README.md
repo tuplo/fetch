@@ -1,7 +1,5 @@
 # @tuplo/fetch
 
-Simplistic HTTP(s) request library.
-
 <p>
   <img src="https://img.shields.io/npm/v/@tuplo/fetch">
   <a href="https://codeclimate.com/github/tuplo/fetch/maintainability">
@@ -12,6 +10,8 @@ Simplistic HTTP(s) request library.
   </a>
   <img src="https://github.com/tuplo/fetch/workflows/Build/badge.svg">
 </p>
+
+Simplistic HTTP(s) request library
 
 ## Usage
 

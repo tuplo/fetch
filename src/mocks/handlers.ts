@@ -1,7 +1,7 @@
 import { rest } from 'msw';
 import type {
   RestRequest,
-  DefaultRequestBody,
+  DefaultBodyType,
   ResponseComposition,
   RestContext,
   MockedResponse,
@@ -11,12 +11,10 @@ import { getHeaders, getQuery } from './helpers/request';
 import { delay, cancelDelay } from './helpers/delay';
 
 export function handler(
-  req: RestRequest<DefaultRequestBody>,
-  res: ResponseComposition<DefaultRequestBody>,
+  req: RestRequest<DefaultBodyType>,
+  res: ResponseComposition<DefaultBodyType>,
   ctx: RestContext
-):
-  | MockedResponse<DefaultRequestBody>
-  | Promise<MockedResponse<DefaultRequestBody>> {
+): MockedResponse<DefaultBodyType> | Promise<MockedResponse<DefaultBodyType>> {
   const { body, method, url } = req;
   const { pathname } = url;
   const headers = getHeaders(req);

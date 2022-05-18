@@ -1,7 +1,7 @@
-import type { RestRequest, DefaultRequestBody } from 'msw';
+import type { RestRequest, DefaultBodyType } from 'msw';
 import { URL } from 'url';
 
-type Request = RestRequest<DefaultRequestBody>;
+type Request = RestRequest<DefaultBodyType>;
 
 type Headers = Record<string, string>;
 export function getHeaders(req: Request) {
