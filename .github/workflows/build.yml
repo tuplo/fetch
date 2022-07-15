@@ -9,13 +9,14 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [12.x, 14.x, 16.x]
+        node-version: [14.x, 16.x, 18.x]
     steps:
       - uses: actions/checkout@master
-      - run: yarn --frozen-lockfile
-      - run: yarn lint
-      - run: yarn lint:ts
-      - run: yarn test:ci
+      - run: |
+          yarn --frozen-lockfile
+          yarn lint
+          yarn lint:ts
+          yarn test:ci
 
   test-coverage:
     needs: test
@@ -25,7 +26,7 @@ jobs:
       - uses: actions/checkout@master
       - uses: actions/setup-node@master
         with:
-          node-version: 16
+          node-version: 18
       - uses: actions/cache@v1
         with:
           path: node_modules
@@ -45,14 +46,15 @@ jobs:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v1
         with:
-          node-version: 16
+          node-version: 18
           registry-url: https://registry.npmjs.org/
       - uses: actions/cache@v2
         with:
           path: node_modules
           key: ${{ runner.os }}-node-${{ hashFiles('**/yarn.lock') }}
-      - run: yarn --frozen-lockfile
-      - run: yarn build
+      - run: |
+          yarn --frozen-lockfile
+          yarn build
       - name: Semantic Release
         uses: cycjimmy/semantic-release-action@v2
         with:

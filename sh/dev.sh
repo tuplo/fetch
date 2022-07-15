@@ -9,7 +9,7 @@ main() {
     --bundle \
     --platform=node \
     --format=esm \
-    --outfile=dist/index.mjs \
+    --outfile=dist/index.mjs.js \
     --watch
 }
 

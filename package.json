@@ -1,107 +1,120 @@
 {
-  "name": "@tuplo/fetch",
-  "description": "Simplistic HTTP request library (ESM/CJS)",
-  "version": "0.0.0-development",
-  "repository": "git@github.com:tuplo/fetch.git",
-  "author": "Rui Costa",
-  "license": "MIT",
-  "keywords": [
-    "http",
-    "https",
-    "fetch"
-  ],
-  "files": [
-    "dist/index.mjs",
-    "dist/index.cjs",
-    "dist/index.d.ts",
-    "dist/fetch.d.ts"
-  ],
-  "main": "./dist/index.cjs",
-  "module": "./dist/index.mjs",
-  "types": "dist/index.d.ts",
-  "engines": {
-    "node": ">=12"
-  },
-  "devDependencies": {
-    "@types/jest": "27.5.1",
-    "@types/node": "17.0.34",
-    "@typescript-eslint/eslint-plugin": "5.25.0",
-    "@typescript-eslint/parser": "5.25.0",
-    "esbuild": "0.14.39",
-    "eslint": "8.15.0",
-    "eslint-config-airbnb-base": "15.0.0",
-    "eslint-config-airbnb-typescript": "17.0.0",
-    "eslint-config-prettier": "8.5.0",
-    "eslint-plugin-import": "2.26.0",
-    "eslint-plugin-jest": "26.2.2",
-    "jest": "28.1.0",
-    "msw": "0.40.0",
-    "nyc": "15.1.0",
-    "prettier": "2.6.2",
-    "ts-jest": "28.0.2",
-    "typescript": "4.6.4"
-  },
-  "scripts": {
-    "build": "bash sh/build.sh",
-    "dev": "bash sh/dev.sh",
-    "lint:ts": "tsc --noEmit",
-    "lint": "eslint src --ext ts",
-    "test:ci:coverage": "bash sh/coverage.sh",
-    "test:ci": "jest --ci",
-    "test": "jest --watch"
-  },
-  "publishConfig": {
-    "access": "public"
-  },
-  "jest": {
-    "setupFilesAfterEnv": [
-      "./jest.setup.ts"
-    ],
-    "transform": {
-      "^.+\\.(t|j)sx?$": "ts-jest"
-    }
-  },
-  "eslintConfig": {
-    "extends": [
-      "airbnb-base",
-      "airbnb-typescript/base",
-      "prettier",
-      "plugin:@typescript-eslint/recommended",
-      "plugin:import/typescript",
-      "plugin:jest/all"
-    ],
-    "parser": "@typescript-eslint/parser",
-    "plugins": [
-      "@typescript-eslint",
-      "jest"
-    ],
-    "parserOptions": {
-      "ecmaVersion": 9,
-      "project": "./tsconfig.json"
-    },
-    "env": {
-      "node": true,
-      "jest": true
-    },
-    "rules": {
-      "jest/prefer-expect-assertions": "off",
-      "import/no-extraneous-dependencies": "off",
-      "import/prefer-default-export": "off"
-    },
-    "overrides": [
-      {
-        "files": [
-          "**/*.ts"
-        ],
-        "rules": {
-          "no-undef": "off"
-        }
-      }
-    ]
-  },
-  "prettier": {
-    "singleQuote": true,
-    "trailingComma": "es5",
-    "printWidth": 80
-  }
+	"name": "@tuplo/fetch",
+	"description": "Simplistic HTTP request library (ESM/CJS)",
+	"version": "0.0.0-development",
+	"repository": "git@github.com:tuplo/fetch.git",
+	"author": "Rui Costa",
+	"license": "MIT",
+	"keywords": [
+		"http",
+		"https",
+		"fetch"
+	],
+	"types": "dist/index.d.ts",
+	"module": "./dist/index.esm.js",
+	"main": "./dist/index.cjs.js",
+	"exports": {
+		".": [
+			{
+				"import": "./dist/index.esm.js",
+				"require": "./dist/index.cjs.js",
+				"default": "./dist/index.esm.js"
+			},
+			"./dist/index.esm.js"
+		]
+	},
+	"files": [
+		"dist/index.esm.js",
+		"dist/index.cjs.js",
+		"dist/index.d.ts",
+		"dist/fetch.d.ts"
+	],
+	"devDependencies": {
+		"@types/debug": "4.1.7",
+		"@types/jest": "28.1.4",
+		"@types/node": "18.0.3",
+		"@typescript-eslint/eslint-plugin": "5.30.5",
+		"@typescript-eslint/parser": "5.30.5",
+		"esbuild": "0.14.48",
+		"eslint": "8.19.0",
+		"eslint-config-airbnb-base": "15.0.0",
+		"eslint-config-airbnb-typescript": "17.0.0",
+		"eslint-config-prettier": "8.5.0",
+		"eslint-plugin-import": "2.26.0",
+		"eslint-plugin-jest": "26.5.3",
+		"jest": "28.1.2",
+		"msw": "0.43.1",
+		"nyc": "15.1.0",
+		"prettier": "2.7.1",
+		"ts-jest": "28.0.5",
+		"typescript": "4.7.4"
+	},
+	"scripts": {
+		"build": "bash sh/build.sh",
+		"dev": "bash sh/dev.sh",
+		"lint:ts": "tsc --noEmit",
+		"lint": "eslint src --ext ts",
+		"test:ci:coverage": "bash sh/coverage.sh",
+		"test:ci": "jest --ci",
+		"test": "jest --watch"
+	},
+	"publishConfig": {
+		"access": "public"
+	},
+	"jest": {
+		"setupFilesAfterEnv": [
+			"./jest.setup.ts"
+		],
+		"transform": {
+			"^.+\\.(t|j)sx?$": "ts-jest"
+		}
+	},
+	"eslintConfig": {
+		"extends": [
+			"airbnb-base",
+			"airbnb-typescript/base",
+			"prettier",
+			"plugin:@typescript-eslint/recommended",
+			"plugin:import/typescript",
+			"plugin:jest/all"
+		],
+		"parser": "@typescript-eslint/parser",
+		"plugins": [
+			"@typescript-eslint",
+			"jest"
+		],
+		"parserOptions": {
+			"ecmaVersion": 9,
+			"project": "./tsconfig.json"
+		},
+		"env": {
+			"node": true,
+			"jest": true
+		},
+		"rules": {
+			"jest/prefer-expect-assertions": "off",
+			"import/no-extraneous-dependencies": "off",
+			"import/prefer-default-export": "off"
+		},
+		"overrides": [
+			{
+				"files": [
+					"**/*.ts"
+				],
+				"rules": {
+					"no-undef": "off"
+				}
+			}
+		]
+	},
+	"prettier": {
+		"singleQuote": true,
+		"trailingComma": "es5",
+		"printWidth": 80,
+		"useTabs": true
+	},
+	"volta": {
+		"node": "18.6.0",
+		"yarn": "1.22.19"
+	}
 }
