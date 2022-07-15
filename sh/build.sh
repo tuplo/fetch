@@ -16,7 +16,7 @@ main() {
     --platform=node \
     --format=esm \
     --minify \
-    --outfile=dist/index.mjs.js
+    --outfile=dist/index.esm.js
 
   cp src/fetch.d.ts dist/fetch.d.ts
   rm -rf dist/mocks
