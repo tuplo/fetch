@@ -1,6 +1,6 @@
-import type { Response, FetchOptions, HttpMethod } from './fetch.d';
-import { request } from './request';
-import { timeout } from './timeout';
+import type { Response, FetchOptions, HttpMethod } from "./fetch.d";
+import { request } from "./request";
+import { timeout } from "./timeout";
 
 export type { Response, FetchOptions, HttpMethod };
 

@@ -1,14 +1,14 @@
-import { rest } from 'msw';
+import { rest } from "msw";
 import type {
 	RestRequest,
 	DefaultBodyType,
 	ResponseComposition,
 	RestContext,
 	MockedResponse,
-} from 'msw';
+} from "msw";
 
-import { getHeaders, getQuery } from './helpers/request';
-import { delay, cancelDelay } from './helpers/delay';
+import { getHeaders, getQuery } from "./helpers/request";
+import { delay, cancelDelay } from "./helpers/delay";
 
 export function handler(
 	req: RestRequest<DefaultBodyType>,
@@ -27,10 +27,10 @@ export function handler(
 		query,
 	};
 
-	if (pathname === '/delay' && query.ms) {
+	if (pathname === "/delay" && query.ms) {
 		return delay(Number(query.ms)).then(() => res(ctx.json(data)));
 	}
-	if (pathname === '/cancel-delay') {
+	if (pathname === "/cancel-delay") {
 		cancelDelay();
 	}
 
@@ -38,9 +38,9 @@ export function handler(
 }
 
 export const handlers = [
-	rest.get('http://localhost/json', handler),
-	rest.post('http://localhost/json', handler),
-	rest.head('http://localhost/head', handler),
-	rest.get('http://localhost/delay', handler),
-	rest.get('http://localhost/cancel-delay', handler),
+	rest.get("http://localhost/json", handler),
+	rest.post("http://localhost/json", handler),
+	rest.head("http://localhost/head", handler),
+	rest.get("http://localhost/delay", handler),
+	rest.get("http://localhost/cancel-delay", handler),
 ];

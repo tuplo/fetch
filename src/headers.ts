@@ -1,4 +1,4 @@
-import type { Headers } from './fetch.d';
+import type { Headers } from "./fetch.d";
 
 export function fromRawHeaders(rawHeaders: string[]): Headers {
 	const headers = rawHeaders.reduce((acc, _, index, array) => {

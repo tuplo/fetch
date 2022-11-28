@@ -1,9 +1,9 @@
-import type { RequestOptions } from 'http';
-import type { URLSearchParams } from 'url';
+import type { RequestOptions } from "http";
+import type { URLSearchParams } from "url";
 
 export type Headers = URLSearchParams;
 
-export type HttpMethod = 'GET' | 'POST' | 'DELETE' | 'PUT' | 'HEAD' | 'PATCH';
+export type HttpMethod = "GET" | "POST" | "DELETE" | "PUT" | "HEAD" | "PATCH";
 
 export type HeadersInit = Record<string, string>;
 

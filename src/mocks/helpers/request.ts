@@ -1,13 +1,13 @@
-import type { RestRequest, DefaultBodyType } from 'msw';
-import { URL } from 'url';
+import type { RestRequest, DefaultBodyType } from "msw";
+import { URL } from "url";
 
 type Request = RestRequest<DefaultBodyType>;
 
 type Headers = Record<string, string>;
 export function getHeaders(req: Request) {
 	return [...req.headers.entries()].reduce((acc, [key, value]) => {
-		if (key === 'x-msw-request-id') return acc;
-		if (value === '') return acc;
+		if (key === "x-msw-request-id") return acc;
+		if (value === "") return acc;
 
 		acc[key] = value;
 		return acc;

@@ -1,137 +1,134 @@
-import type { FetchOptions } from './fetch.d';
+import type { FetchOptions } from "./fetch.d";
 
-import fetch from './index';
+import fetch from "./index";
 
-describe('fetch (http)', () => {
-	describe('json', () => {
-		const url = 'http://localhost/json';
+describe("fetch (http)", () => {
+	describe("json", () => {
+		const url = "http://localhost/json";
 
-		describe('get', () => {
-			it('plain request', async () => {
+		describe("get", () => {
+			it("plain request", async () => {
 				const result = await fetch(url).then((res) => res.json());
 
 				const expected = {
-					body: '',
 					headers: {
-						host: 'localhost',
+						host: "localhost",
 					},
-					method: 'GET',
+					method: "GET",
 					query: {},
 				};
 				expect(result).toStrictEqual(expected);
 			});
 
-			it('with query parameters', async () => {
+			it("with query parameters", async () => {
 				const result = await fetch(`${url}?foo=bar`).then((res) => res.json());
 
 				const expected = {
-					body: '',
 					headers: {
-						host: 'localhost',
+						host: "localhost",
 					},
-					method: 'GET',
-					query: { foo: 'bar' },
+					method: "GET",
+					query: { foo: "bar" },
 				};
 				expect(result).toStrictEqual(expected);
 			});
 
-			it('with headers', async () => {
+			it("with headers", async () => {
 				const reqOptions = {
 					headers: {
-						Authentication: 'Bearer xxx',
-						'Content-type': 'application/json',
-						host: 'localhost',
+						Authentication: "Bearer xxx",
+						"Content-type": "application/json",
+						host: "localhost",
 					},
 				};
 				const result = await fetch(url, reqOptions).then((res) => res.json());
 
 				const expected = {
-					body: '',
 					headers: {
-						authentication: 'Bearer xxx',
-						'content-type': 'application/json',
-						host: 'localhost',
+						authentication: "Bearer xxx",
+						"content-type": "application/json",
+						host: "localhost",
 					},
-					method: 'GET',
+					method: "GET",
 					query: {},
 				};
 				expect(result).toStrictEqual(expected);
 			});
 		});
 
-		describe('post', () => {
+		describe("post", () => {
 			const defaultReqOptions: Partial<FetchOptions> = {
-				method: 'POST',
+				method: "POST",
 			};
 
-			it('plain request', async () => {
+			it("plain request", async () => {
 				const result = await fetch(url, defaultReqOptions).then((res) =>
 					res.json()
 				);
 
 				const expected = {
-					body: '',
+					body: "",
 					headers: {
-						host: 'localhost',
+						host: "localhost",
 					},
-					method: 'POST',
+					method: "POST",
 					query: {},
 				};
 				expect(result).toStrictEqual(expected);
 			});
 
-			it('with query parameters', async () => {
+			it("with query parameters", async () => {
 				const result = await fetch(`${url}?foo=bar`, defaultReqOptions).then(
 					(res) => res.json()
 				);
 
 				const expected = {
-					body: '',
+					body: "",
 					headers: {
-						host: 'localhost',
+						host: "localhost",
 					},
-					method: 'POST',
-					query: { foo: 'bar' },
+					method: "POST",
+					query: { foo: "bar" },
 				};
 				expect(result).toStrictEqual(expected);
 			});
 
-			it('with headers', async () => {
+			it("with headers", async () => {
 				const reqOptions = {
 					...defaultReqOptions,
 					headers: {
-						Authentication: 'Bearer xxx',
-						'Content-type': 'application/json',
+						Authentication: "Bearer xxx",
+						"Content-type": "application/json",
 					},
 				};
 				const result = await fetch(url, reqOptions).then((res) => res.json());
 
 				const expected = {
-					body: '',
+					body: "",
 					headers: {
-						authentication: 'Bearer xxx',
-						'content-type': 'application/json',
-						host: 'localhost',
+						authentication: "Bearer xxx",
+						"content-type": "application/json",
+						host: "localhost",
 					},
-					method: 'POST',
+					method: "POST",
 					query: {},
 				};
 				expect(result).toStrictEqual(expected);
 			});
 
-			it('with body', async () => {
+			it("with body", async () => {
 				const reqOptions = {
 					...defaultReqOptions,
-					body: 'foo=bar',
+					body: "foo=bar",
 				};
 				const result = await fetch(url, reqOptions).then((res) => res.json());
 
 				const expected = {
-					body: 'foo=bar',
+					body: "foo=bar",
 					headers: {
-						host: 'localhost',
+						host: "localhost",
 					},
-					method: 'POST',
+					method: "POST",
 					query: {},
 				};
 				expect(result).toStrictEqual(expected);
