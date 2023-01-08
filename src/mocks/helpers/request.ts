@@ -1,5 +1,4 @@
 import type { RestRequest, DefaultBodyType } from "msw";
-import { URL } from "url";
 
 type Request = RestRequest<DefaultBodyType>;
 

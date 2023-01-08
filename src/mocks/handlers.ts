@@ -1,14 +1,11 @@
-import { rest } from "msw";
 import type {
-	RestRequest,
-	DefaultBodyType,
-	ResponseComposition,
-	RestContext,
-	MockedResponse,
+	DefaultBodyType, MockedResponse, ResponseComposition,
+	RestContext, RestRequest
 } from "msw";
+import { rest } from "msw";
 
+import { cancelDelay, delay } from "./helpers/delay";
 import { getHeaders, getQuery } from "./helpers/request";
-import { delay, cancelDelay } from "./helpers/delay";
 
 export function handler(
 	req: RestRequest<DefaultBodyType>,

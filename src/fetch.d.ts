@@ -1,5 +1,5 @@
-import type { RequestOptions } from "http";
-import type { URLSearchParams } from "url";
+import type { RequestOptions } from "node:http";
+import type { URLSearchParams } from "node:url";
 
 export type Headers = URLSearchParams;
 

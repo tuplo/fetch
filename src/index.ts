@@ -1,10 +1,10 @@
-import type { Response, FetchOptions, HttpMethod } from "./fetch.d";
+import type { FetchOptions, HttpMethod, Response } from "./fetch.d";
 import { request } from "./request";
 import { timeout } from "./timeout";
 
 export type { Response, FetchOptions, HttpMethod };
 
-export default async function fetch<T = unknown>(
+async function fetch<T = unknown>(
 	url: string,
 	options?: Partial<FetchOptions>
 ): Promise<Response<T>> {
@@ -32,3 +32,5 @@ export default async function fetch<T = unknown>(
 
 	return result as Response<T>;
 }
+
+export default fetch;

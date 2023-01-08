@@ -1,7 +1,7 @@
 const config = {
-	setupFilesAfterEnv: ['./jest.setup.ts'],
+	setupFilesAfterEnv: ["./jest.setup.ts"],
 	transform: {
-		'^.+\\.(t|j)sx?$': 'ts-jest',
+		"^.+\\.(t|j)sx?$": "ts-jest",
 	},
 };
 
