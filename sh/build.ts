@@ -4,18 +4,10 @@ async function main() {
 	await $`rm -rf dist`;
 	await $`tsc --build tsconfig.build.json`;
 
-	const formats = ["cjs", "esm"];
-	for await (const format of formats) {
-		const flags = [
-			"--bundle",
-			"--platform=node",
-			`--format=${format}`,
-			`--minify`,
-			`--outfile=dist/index.${format}.js`,
-		];
+	const flags = ["--bundle", "--platform=node", "--minify"];
 
-		await $`esbuild src/index.ts ${flags}`;
-	}
+	await $`esbuild src/index.ts --outfile=dist/index.cjs ${flags}`;
+	await $`esbuild src/index.ts --format=esm --outfile=dist/index.mjs ${flags}`;
 
 	await $`cp src/fetch.d.ts dist/fetch.d.ts`;
 	await $`rm -rf dist/mocks`;
