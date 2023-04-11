@@ -16,8 +16,14 @@
 	"exports": {
 		".": [
 			{
-				"import": "./dist/index.mjs",
-				"require": "./dist/index.cjs",
+				"import": {
+					"types": "./dist/index.d.ts",
+					"default": "./dist/index.mjs"
+				},
+				"require": {
+					"types": "./dist/index.d.ts",
+					"default": "./dist/index.cjs"
+				},
 				"default": "./dist/index.mjs"
 			},
 			"./dist/index.mjs"
@@ -41,23 +47,23 @@
 	},
 	"devDependencies": {
 		"@types/debug": "4.1.7",
-		"@types/node": "18.14.0",
-		"@typescript-eslint/eslint-plugin": "5.52.0",
-		"@typescript-eslint/parser": "5.52.0",
-		"@vitest/coverage-c8": "0.28.5",
-		"esbuild": "0.17.8",
-		"eslint": "8.34.0",
+		"@types/node": "18.15.11",
+		"@typescript-eslint/eslint-plugin": "5.58.0",
+		"@typescript-eslint/parser": "5.58.0",
+		"@vitest/coverage-c8": "0.30.1",
+		"esbuild": "0.17.16",
+		"eslint": "8.38.0",
 		"eslint-config-airbnb-base": "15.0.0",
 		"eslint-config-airbnb-typescript": "17.0.0",
-		"eslint-config-prettier": "8.6.0",
+		"eslint-config-prettier": "8.8.0",
 		"eslint-plugin-import": "2.27.5",
-		"msw": "1.0.1",
+		"msw": "1.2.1",
 		"nyc": "15.1.0",
-		"prettier": "2.8.4",
-		"tsx": "3.12.3",
-		"typescript": "4.9.5",
-		"vitest": "0.28.5",
-		"zx": "7.1.1"
+		"prettier": "2.8.7",
+		"tsx": "3.12.6",
+		"typescript": "5.0.4",
+		"vitest": "0.30.1",
+		"zx": "7.2.1"
 	},
 	"publishConfig": {
 		"access": "public"
