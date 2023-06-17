@@ -9,9 +9,8 @@
     "outDir": "./dist",
     "removeComments": true,
     "strict": true,
-    "target": "es6",
     "types": ["vitest/globals"]
   },
-  "include": ["src/**/*"],
+  "include": ["src/**/*", "sh/**/*"],
   "exclude": ["node_modules/**/*"]
 }
