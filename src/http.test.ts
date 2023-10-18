@@ -1,4 +1,4 @@
-import type { FetchOptions } from "./fetch.d";
+import { type FetchOptions } from "./fetch.d";
 
 import fetch from "./index";
 
@@ -67,7 +67,6 @@ describe("fetch (http)", () => {
 				);
 
 				const expected = {
-					body: "",
 					headers: {
 						host: "localhost",
 					},
@@ -83,7 +82,6 @@ describe("fetch (http)", () => {
 				);
 
 				const expected = {
-					body: "",
 					headers: {
 						host: "localhost",
 					},
@@ -104,7 +102,6 @@ describe("fetch (http)", () => {
 				const result = await fetch(url, reqOptions).then((res) => res.json());
 
 				const expected = {
-					body: "",
 					headers: {
 						authentication: "Bearer xxx",
 						"content-type": "application/json",

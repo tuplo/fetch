@@ -1,4 +1,4 @@
-import type { FetchOptions, HttpMethod, Response } from "./fetch.d";
+import { type FetchOptions, type HttpMethod, type Response } from "./fetch.d";
 import { request } from "./request";
 import { timeout } from "./timeout";
 

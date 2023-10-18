@@ -1,28 +1,46 @@
+/* eslint-disable no-underscore-dangle */
 import type {
-	DefaultBodyType, MockedResponse, ResponseComposition,
-	RestContext, RestRequest
+	DefaultBodyType,
+	MockedResponse,
+	ResponseComposition,
+	RestContext,
+	RestRequest,
 } from "msw";
 import { rest } from "msw";
 
 import { cancelDelay, delay } from "./helpers/delay";
 import { getHeaders, getQuery } from "./helpers/request";
 
+interface IRequestData {
+	body?: string;
+	headers: Record<string, string>;
+	method: string;
+	query: Record<string, string>;
+}
+
 export function handler(
 	req: RestRequest<DefaultBodyType>,
 	res: ResponseComposition<DefaultBodyType>,
 	ctx: RestContext
 ): MockedResponse<DefaultBodyType> | Promise<MockedResponse<DefaultBodyType>> {
-	const { body, method, url } = req;
+	const { method, url } = req;
 	const { pathname } = url;
 	const headers = getHeaders(req);
 	const query = getQuery(req);
 
-	const data = {
-		body,
+	const dec = new TextDecoder("utf-8");
+	// @ts-expect-error _body is typed private
+	const body = dec.decode(req._body as Uint8Array);
+
+	const data: IRequestData = {
 		headers,
 		method,
 		query,
 	};
+
+	if (body) {
+		data.body = body;
+	}
 
 	if (pathname === "/delay" && query.ms) {
 		return delay(Number(query.ms)).then(() => res(ctx.json(data)));

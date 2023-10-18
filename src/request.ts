@@ -1,9 +1,7 @@
-import type { OutgoingHttpHeaders } from "node:http";
-import http from "node:http";
-import type { RequestOptions } from "node:https";
-import https from "node:https";
+import http, { type OutgoingHttpHeaders } from "node:http";
+import https, { type RequestOptions } from "node:https";
 
-import type { FetchOptions, Response } from "./fetch.d";
+import { type FetchOptions, type Response } from "./fetch.d";
 import { fromRawHeaders } from "./headers";
 
 export async function request<T = unknown>(
