@@ -1,15 +1,6 @@
-/* eslint-disable no-underscore-dangle */
-import type {
-	DefaultBodyType,
-	MockedResponse,
-	ResponseComposition,
-	RestContext,
-	RestRequest,
-} from "msw";
-import { rest } from "msw";
+import { http, HttpResponse } from "msw";
 
 import { cancelDelay, delay } from "./helpers/delay";
-import { getHeaders, getQuery } from "./helpers/request";
 
 interface IRequestData {
 	body?: string;
@@ -18,19 +9,17 @@ interface IRequestData {
 	query: Record<string, string>;
 }
 
-export function handler(
-	req: RestRequest<DefaultBodyType>,
-	res: ResponseComposition<DefaultBodyType>,
-	ctx: RestContext
-): MockedResponse<DefaultBodyType> | Promise<MockedResponse<DefaultBodyType>> {
-	const { method, url } = req;
-	const { pathname } = url;
-	const headers = getHeaders(req);
-	const query = getQuery(req);
+async function handler(args: { request: Request }) {
+	const { request } = args;
+	const { url, method } = request;
 
-	const dec = new TextDecoder("utf-8");
-	// @ts-expect-error _body is typed private
-	const body = dec.decode(req._body as Uint8Array);
+	const uri = new URL(url);
+	const body = await request.text();
+	const query = Object.fromEntries(uri.searchParams.entries());
+	const headers: Record<string, string> = {};
+	request.headers.forEach((value, key) => {
+		headers[key] = value;
+	});
 
 	const data: IRequestData = {
 		headers,
@@ -42,20 +31,22 @@ export function handler(
 		data.body = body;
 	}
 
-	if (pathname === "/delay" && query.ms) {
-		return delay(Number(query.ms)).then(() => res(ctx.json(data)));
+	if (uri.pathname === "/delay" && uri.searchParams.get("ms")) {
+		const ms = Number(uri.searchParams.get("ms"));
+		return delay(ms).then(() => HttpResponse.json(data));
 	}
-	if (pathname === "/cancel-delay") {
+
+	if (uri.pathname === "/cancel-delay") {
 		cancelDelay();
 	}
 
-	return res(ctx.json(data));
+	return HttpResponse.json(data);
 }
 
 export const handlers = [
-	rest.get("http://localhost/json", handler),
-	rest.post("http://localhost/json", handler),
-	rest.head("http://localhost/head", handler),
-	rest.get("http://localhost/delay", handler),
-	rest.get("http://localhost/cancel-delay", handler),
+	http.get("http://localhost/json", handler),
+	http.post("http://localhost/json", handler),
+	http.head("http://localhost/head", handler),
+	http.get("http://localhost/delay", handler),
+	http.get("http://localhost/cancel-delay", handler),
 ];
