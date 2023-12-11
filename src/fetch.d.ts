@@ -7,11 +7,11 @@ export type HttpMethod = "GET" | "POST" | "DELETE" | "PUT" | "HEAD" | "PATCH";
 
 export type HeadersInit = Record<string, string>;
 
-export interface FetchOptions extends RequestOptions {
+export type FetchOptions = RequestOptions & {
 	body?: BodyInit | null;
 	headers: HeadersInit;
 	method: HttpMethod;
-}
+};
 
 export type Response<T = unknown> = {
 	headers: Headers;

@@ -2,12 +2,12 @@ import { http, HttpResponse } from "msw";
 
 import { cancelDelay, delay } from "./helpers/delay";
 
-interface IRequestData {
+type IRequestData = {
 	body?: string;
 	headers: Record<string, string>;
 	method: string;
 	query: Record<string, string>;
-}
+};
 
 async function handler(args: { request: Request }) {
 	const { request } = args;
